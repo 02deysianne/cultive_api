@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Lista de Insumos</title>
+</head>
+<body>
+    <header>
+        <img src="cultive.png" alt="Logo Gestão de Insumos" class="logo">
+        <h1>Gestão de Insumos Agrícolas</h1>
+      </header>      
+
+  <button class="create" onclick="window.location.href='cadastro.html'">Novo Insumo</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Quantidade</th>
+        <th>Unidade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaInsumos"></tbody>
+  </table>
+
+  <script>
+    const API_URL = "http://localhost:7000/insumos";
+
+    function carregarInsumos() {
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(insumos => {
+          const tabela = document.getElementById('tabelaInsumos');
+          tabela.innerHTML = '';
+          insumos.forEach(insumo => {
+            tabela.innerHTML += `
+              <tr>
+                <td>${insumo.id}</td>
+                <td>${insumo.nome}</td>
+                <td>${insumo.categoria}</td>
+                <td>${insumo.quantidadeEstoque}</td>
+                <td>${insumo.unidade}</td>
+                <td>
+                  <button class="update" onclick="atualizar('${insumo.id}')">Atualizar</button>
+                  <button class="delete" onclick="deletar('${insumo.id}')">Deletar</button>
+                </td>
+              </tr>
+            `;
+          });
+        });
+    }
+
+    function atualizar(id) {
+      window.location.href = `atualizar.html?id=${id}`;
+    }
+
+    function deletar(id) {
+      fetch(`${API_URL}/${id}`, { method: "DELETE" })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.mensagem);
+          carregarInsumos();
+        })
+        .catch(() => alert("Erro ao deletar o insumo."));
+    }
+
+    carregarInsumos();
+  </script>
+</body>
+</html>

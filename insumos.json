@@ -1,0 +1,30 @@
+[
+  {
+    "id": "19ddb16c",
+    "nome": "Semente de Milho Híbrido 30F53",
+    "categoria": "Semente",
+    "quantidadeEstoque": 100,
+    "unidade": "kg"
+  },
+  {
+    "id": "e2c4684a",
+    "nome": "Fertilizantes Ureia",
+    "categoria": "Adubo",
+    "quantidadeEstoque": 100,
+    "unidade": "kg"
+  },
+  {
+    "id": "9ffcd127",
+    "nome": "adubo",
+    "categoria": "Adubo",
+    "quantidadeEstoque": 23,
+    "unidade": "litro"
+  },
+  {
+    "id": "7d812958",
+    "nome": "Adubo",
+    "categoria": "Pedra",
+    "quantidadeEstoque": 100,
+    "unidade": "litro"
+  }
+]
